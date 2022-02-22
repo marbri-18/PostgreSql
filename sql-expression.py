@@ -19,7 +19,7 @@ album_table = Table(
     "Album", meta,
     Column("AlbumId", Integer, primary_key=True),
     Column("Title", String),
-    Column("ArtistId", Integer, Foreignkey("artist_table.ArtistId"))
+    Column("ArtistId", Integer, ForeignKey("artist_table.ArtistId"))
 )
 
 # Create variable for "Track" table
@@ -39,3 +39,14 @@ track_table = Table(
 
 # Making the connection
 with db.connect() as connection:
+
+    # Query 1 - Select all records from the "Artist" table
+    # select_query = artist_table.select()
+
+    # Query 2 - Select only the "Name" column from the "Artist" table
+    select_query = artist_table.select().with_only_columns([artist_table.c.Name])
+
+
+    results = connection.execute(select_query)
+    for result in results:
+        print(result)
