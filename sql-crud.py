@@ -18,7 +18,21 @@ class Programmer(base):
     nationality = Column(String)
     famous_for = Column(String)
 
-   
+
+# Creating records on the "Programmer" table
+ada_lovelace = Programmer(
+    first_name = "Ada",
+    last_name = "Lovelace",
+    gender = "F",
+    nationality = "British",
+    famous_for = "First programmer" 
+)
+
+# add each instance of our programmers to our session
+session.add(ada_lovelace)
+
+# commit our session to the database
+session.commit()
  
 
 
